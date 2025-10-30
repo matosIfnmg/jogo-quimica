@@ -1,0 +1,212 @@
+/* Reset Básico e Estilos Globais */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Press+Start 2P', cursive;
+}
+
+body {
+    background-color: #1e1e1e; /* Masmorra escura */
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Contêiner Principal */
+.container {
+    background-color: #3a3a3a;
+    border: 4px solid #999;
+    border-radius: 10px;
+    box-shadow: 0 8px 0 #000000;
+    padding: 20px;
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+}
+
+h1 {
+    color: #ffd700; /* Ouro */
+    font-size: 1.5rem;
+    line-height: 1.4;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px #c00;
+}
+
+h2 {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 0.9rem;
+    color: #eee;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+/* Botões */
+button {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #d9534f; /* Vermelho "Ataque" */
+    color: white;
+    border: 2px solid #000;
+    border-radius: 8px;
+    padding: 15px 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+    box-shadow: 0 4px 0 #a94442;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #c9302c;
+}
+
+button:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #a94442;
+}
+
+/* --- ESTILOS DO JOGO RPG --- */
+
+/* Barra de Estatísticas */
+#stats-bar {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    margin: 15px 0;
+}
+#health-display {
+    color: #ff4136; /* Vermelho Vida */
+    font-size: 1rem;
+}
+#gold-display {
+    color: #ffd700; /* Amarelo Ouro */
+}
+
+/* Mapa de Progresso */
+#progress-map {
+    width: 100%;
+    height: 30px;
+    background-color: #1e1e1e;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    position: relative; /* Para o baú */
+}
+
+#progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #28a745; /* Verde (caminho) */
+    transition: width 0.5s linear;
+}
+
+/* Ícone do Baú (usando emoji) */
+#treasure-chest {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+}
+#treasure-chest::after {
+    content: '🏆'; /* Ou 💎 ou 💰 */
+}
+
+/* "Batalha" */
+#battle-container {
+    background-color: #2c2c2c;
+    border: 2px dashed #999;
+    padding: 20px;
+    border-radius: 5px;
+    min-height: 150px;
+}
+
+#monster-name {
+    color: #ff4136;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+#question-text {
+    min-height: 50px; /* Evita "pulos" de layout */
+}
+
+
+/* Opções (Ataques) */
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.option-btn {
+    background-color: #007bff;
+    box-shadow: 0 4px 0 #0056b3;
+}
+.option-btn:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+.option-btn:active:not(:disabled) {
+    box-shadow: 0 2px 0 #0056b3;
+}
+
+/* Feedback de Batalha */
+.option-btn.correct {
+    background-color: #28a745;
+    box-shadow: 0 4px 0 #1c7430;
+    animation: pulse 0.5s;
+}
+.option-btn.incorrect {
+    background-color: #dc3545;
+    box-shadow: 0 4px 0 #a52834;
+}
+.option-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Tela Final */
+#end-title {
+    font-size: 2rem;
+}
+#end-screen.win #end-title {
+    color: #ffd700; /* Dourado */
+}
+#end-screen.lose #end-title {
+    color: #dc3545; /* Vermelho */
+}
+#score-text {
+    font-size: 1.8rem;
+    color: #ffd700;
+}
+
+/* Utilitários */
+.hide {
+    display: none;
+}
+
+/* Animações */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* Animação de tomar dano */
+body.taking-damage {
+    animation: shake 0.3s;
+}
